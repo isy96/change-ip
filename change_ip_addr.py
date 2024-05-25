@@ -11,6 +11,7 @@ def clear():
         system("clear")
 
 clear()
+
 red = "\033[91m"
 
 def get_interfaces():
@@ -25,6 +26,16 @@ def get_ip(interface):
 def get_mask(interface):
     mask = ni.ifaddresses(interface)[ni.AF_INET][0]['mask']
     return mask
+
+
+
+
+
+change_random = random.randint(2,254)
+change_random1 = random.randint(2,254)
+
+
+
 
 iface = get_interfaces()
 
@@ -51,22 +62,30 @@ print('interface name : ' + iface[int(user) -1])
 print('ip address : ' + ip_addr)
 print('subnetmask : ' + subnet)
 
+
 type_to_user = f"""
 {red}to change type interface name like eth0 or lo 
 """
 print(type_to_user)
-user = input("enter interface u want change ip : ")
+
+user = input("enter interface name you want to change ip : " + str(iface) + '\n')
+
+
 
 def change_ip():
     change_1 = random.randint(2,254)
     change_2 = random.randint(2,254)
-
+    ask = system(f'sudo ifconfig {user} 192.168.{change_1}.{change_2}')
     if name == 'nt':
         print('error')
 
     else:
-        system(f'sudo ifconfig {user} 192.168.{change_1}.{change_2}')
+        print(f'192.168.{change_1}.{change_2}')
 
 if __name__ == '__main__':
-    while True:
-        change_ip()
+    with open("changed_ips.txt", "a") as file:
+        while True:
+            new_ip = change_ip()
+            if new_ip:
+                file.write(f'{new_ip}\n')
+            time.sleep(1)
