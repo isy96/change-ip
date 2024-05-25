@@ -1,19 +1,86 @@
 from os import name,system
 import random
+import netifaces as ni
+import time
 
 
-def change_ip_addr():
-    choose_ip = random.randint(2, 254)
-    choose_ip1 = random.randint(2, 254)
+def clear():
+    if name == 'nt':
+        system("cls")
+    else:
+        system("clear")
+
+clear()
+
+red = "\033[91m"
+
+def get_interfaces():
+    interfaces = ni.interfaces()
+    return interfaces
+
+
+def get_ip(interface):
+    ip = ni.ifaddresses(interface)[ni.AF_INET][0]['addr']
+    return ip
+
+def get_mask(interface):
+    mask = ni.ifaddresses(interface)[ni.AF_INET][0]['mask']
+    return mask
+
+
+
+
+
+change_random = random.randint(2,254)
+change_random1 = random.randint(2,254)
+
+
+
+
+iface = get_interfaces()
+
+count = 1
+
+for i in iface:
+    print(count , '-' , i)
+    count += 1
+
+user = ''
+
+
+while not user.isdigit() or int(user.strip()) > count:
+    user = input("enter interface : ")
+
+
+
+user_choose = iface[int(user.strip()) -1] 
+
+ip_addr = get_ip(user_choose)
+subnet = get_mask(user_choose)
+
+print('interface name : ' + iface[int(user) -1])
+print('ip address : ' + ip_addr)
+print('subnetmask : ' + subnet)
+
+
+type_to_user = f"""
+{red}to change type interface name like eth0 or lo 
+"""
+print(type_to_user)
+
+user = input("enter interface u want change ip : ")
+
+
+def change_ip():
+    change_1 = random.randint(2,254)
+    change_2 = random.randint(2,254)
 
     if name == 'nt':
-        print("this tool not for windows users")
+        print('error')
 
     else:
-        system(f'sudo ifconfig eth0 192.168.{choose_ip}.{choose_ip1}')
-
-
+        system(f'sudo ifconfig {user} 192.168.{change_1}.{change_2}')
 
 if __name__ == '__main__':
-    while 1==1:
-        change_ip_addr()
+    while True:
+        change_ip()
