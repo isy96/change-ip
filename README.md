@@ -1,14 +1,13 @@
 # change-ip
 this tool change your IP ADDRESS using python work on linux
 
-if u want to make change every 3 second u can just add time.sleep(3)
 
+first u will show all interfaces on your device and you will choose one to change IP 
 
-if __name__ == "__main__":
-  while 1==1:
-  change_ip_addr
-  time.sleep(3)
+second when you choose IP to change terminal will print all IP changed 
 
-like that
+you can change any interface [docker0,eth1,eth0,lo,....else]
 
-for any questions send to @_yamen._.2 instagram
+thanks for testing my first tool (@-@)
+
+for any question send @_yamen._.2 instagram 
