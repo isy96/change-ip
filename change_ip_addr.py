@@ -11,7 +11,6 @@ def clear():
         system("clear")
 
 clear()
-
 red = "\033[91m"
 
 def get_interfaces():
@@ -26,16 +25,6 @@ def get_ip(interface):
 def get_mask(interface):
     mask = ni.ifaddresses(interface)[ni.AF_INET][0]['mask']
     return mask
-
-
-
-
-
-change_random = random.randint(2,254)
-change_random1 = random.randint(2,254)
-
-
-
 
 iface = get_interfaces()
 
@@ -62,14 +51,11 @@ print('interface name : ' + iface[int(user) -1])
 print('ip address : ' + ip_addr)
 print('subnetmask : ' + subnet)
 
-
 type_to_user = f"""
 {red}to change type interface name like eth0 or lo 
 """
 print(type_to_user)
-
 user = input("enter interface u want change ip : ")
-
 
 def change_ip():
     change_1 = random.randint(2,254)
