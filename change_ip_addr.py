@@ -83,9 +83,6 @@ def change_ip():
         print(f'192.168.{change_1}.{change_2}')
 
 if __name__ == '__main__':
-    with open("changed_ips.txt", "a") as file:
         while True:
             new_ip = change_ip()
-            if new_ip:
-                file.write(f'{new_ip}\n')
             time.sleep(1)
